@@ -1,10 +1,33 @@
-def get_choices():
-    Player_choice = "rock"
-    Computer_choice = "paper"
-    
-    return Computer_choice
-    
-Choices = get_choices()
-print(Choices)
+import random
+Options = ["rock", "paper", "scissors"]
 
-# This code defines a function that sets the player's choice to "rock" and the computer's choice to "paper". It then returns the computer's choice and prints it.   
+def get_choices():
+    Player_choice = input("Enter your choice (rock, paper, scissors): ")
+    Computer_choice = random.choice(Options)
+    Choices = {"Player": Player_choice, "Computer": Computer_choice}
+    return Choices
+
+def check_winner(Player, Computer):
+   print(f"You chose  {Player}  , computer chose  {Computer} .")
+   if Player == Computer:
+       return "It's a tie!"
+   if Player == "rock":
+       if Computer == "scissors":
+           return "Rock smashes scissors! You win!"
+       else:
+           return "Paper covers rock! You lose!"
+   if Player == "paper":
+       if Computer == "rock":  
+           return "Paper covers rock! You win!"
+       else:
+           return "Scissors cuts paper! You lose!"
+   if Player == "scissors":
+       if Computer == "paper":
+           return "Scissors cuts paper! You win!"
+       else:
+           return "Rock smashes scissors! You lose!"
+
+# Main game loop
+choices = get_choices()
+result = check_winner(choices["Player"], choices["Computer"])
+print(result)
